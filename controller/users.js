@@ -25,7 +25,6 @@ const postLogin = (req, res) => {
   logger.info('postLogin');
   const { username, password, name, address, age, phone, url } = req.user;
   const user = { username, password, name, address, age, phone, url };
-  // console.log('userrrr', user)
   req.session.user = user;
   res.redirect('/api/products');
 };
@@ -62,7 +61,7 @@ const getLogout = (req, res) => {
     if (err) {
       res.send('No se pudo deslogear');
     } else {
-      res.redirect('/api/logout');
+      res.render('logout', {user});
     }
   });
 };

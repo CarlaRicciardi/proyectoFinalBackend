@@ -1,4 +1,4 @@
-const service = require("../service/products.js");
+const service = require('../service/products.js');
 
 async function getProducts(req, res) {
   let allProducts = await service.getProducts();
@@ -11,14 +11,12 @@ async function getProducts(req, res) {
     };
   });
   if (productsFixed) {
-    res.render("allProducts", {
+    res.render('allProducts', {
       products: productsFixed,
-      // user: req.session.user,
+      user: req.session.user,
     });
   }
 }
-//cuando agregue todo lo de usuarios agregar linea de abajo user
-
 
 async function getProductByName(req, res) {
   let { name } = req.params;
@@ -33,22 +31,13 @@ async function getProductById(req, res) {
 }
 
 async function postProduct(req, res) {
-  let result = await service.postProduct(
-    req.body.title,
-    req.body.thumbnail,
-    req.body.price
-  );
+  let result = await service.postProduct(req.body.title, req.body.thumbnail, req.body.price);
   res.status(201).json(result);
 }
 
 async function putProductById(req, res) {
   let { id } = req.params;
-  let result = await service.putProductById(
-    id,
-    req.body.title,
-    req.body.thumbnail,
-    req.body.price
-  );
+  let result = await service.putProductById(id, req.body.title, req.body.thumbnail, req.body.price);
   res.status(201).json(result);
 }
 

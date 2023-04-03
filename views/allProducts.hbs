@@ -26,7 +26,7 @@
       </div>
     </div>
     <br />
-    <button type='button' class='btn btn-outline-danger'><a href='/api/logout' style='text-decoration: none;'>Salir</a></button>
+    <button type='button' class='btn btn-outline-danger'><a href='./logout' style='text-decoration: none;'>Salir</a></button>
   </div>
 </section>
 
@@ -50,3 +50,30 @@
     <h1 class='text-center'>No se encontraron productos</h1>
   {{/if}}
 </div>
+
+<br />
+<br />
+<br />
+<br />
+
+<section class='p-4 bg-light'>
+  <h1 class='text-secondary text-center'>Agrega un producto</h1>
+  <form onsubmit='return false'>
+    <div class='mb-3'>
+      <label class='form-label fw-bold text-secondary fs-3' for='name'>Nombre:</label>
+      <input id='inputTitle' class='form-control' type='text' name='title' required />
+    </div>
+    <div class='mb-3'>
+      <label class='form-label fw-bold text-secondary fs-3' for='price'>Precio:</label>
+      <input id='inputPrice' class='form-control' type='number' name='price' required />
+    </div>
+    <div class='mb-3'>
+      <label class='form-label fw-bold text-secondary fs-3' for='picture'>Foto URL:</label>
+      <input id='inputThumbnail' class='form-control' type='url' name='thumbnail' required />
+    </div>
+    <div class='mb-3'>
+      <button class='btn btn-success d-block mx-auto' onclick='sendProd()'>Agregar</button>
+      {{! <input class='btn btn-success d-block mx-auto' type='submit' value='Enviar' /> }}
+    </div>
+  </form>
+</section>
