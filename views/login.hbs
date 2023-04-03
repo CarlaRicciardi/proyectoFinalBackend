@@ -1,0 +1,18 @@
+<section class='p-4 bg-light'>
+  <h1 class='text-secondary text-center text-success'>INICIAR SESIÓN</h1>
+
+  <div class='mb-3'>
+    <form action='/api/login' method='POST'>
+      <div>
+        <label class='form-label fw-bold text-secondary fs-3' for='login'>Para ingresar, escriba su email y contraseña:</label>
+        <input type='text' id='inputUser' name='username' class='form-control' placeholder='email' required />
+        <input type='text' id='inputPass' name='password' class='form-control' placeholder='password' required />
+      </div>
+      <br />
+      <input type='submit' class='btn btn-success d-block mx-auto' value='Ingresar!' />
+    </form>
+
+    <h3 class='text-secondary text-center mt-5'>¿No posee una cuenta?
+      <a href='/api/signup' class='my-3 h2'>Registrarse aquí</a></h3>
+  </div>
+</section>
