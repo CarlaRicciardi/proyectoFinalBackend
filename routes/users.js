@@ -3,7 +3,7 @@ const routerUsers = express.Router();
 const passport = require('passport');
 const controller = require('../controller/users.js');
 
-// routerUsers.get("/", controller.getIndex);
+routerUsers.get("/", controller.getIndex);
 routerUsers.get('/login', controller.getLogin);
 routerUsers.post('/login', passport.authenticate('login', { failureRedirect: '/api/failLogin' }), controller.postLogin);
 routerUsers.get('/failLogin', controller.getFailLogin);

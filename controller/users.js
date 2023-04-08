@@ -3,7 +3,7 @@ const logger = require('../config/logger.js');
 
 const getIndex = (req, res) => {
   logger.info('getIndex');
-  res.redirect('/login');
+  res.redirect('/api/login');
 };
 
 const getLogin = (req, res) => {
@@ -50,6 +50,7 @@ const postSignup = (req, res) => {
   logger.info('postSignup');
   const { username, password, name, address, age, phone, url } = req.user;
   const user = { username, password, name, address, age, phone, url };
+  // service.signupMail(username)
   res.render('successSignup', { user });
 };
 
@@ -61,7 +62,7 @@ const getLogout = (req, res) => {
     if (err) {
       res.send('No se pudo deslogear');
     } else {
-      res.render('logout', {user});
+      res.render('logout', { user });
     }
   });
 };

@@ -52,7 +52,7 @@ const startPassport = () => {
           }
 
           if (user) {
-            console.log('User already exists');
+            console.log('User already exists', user);
             return done(null, false);
           }
 
@@ -70,7 +70,7 @@ const startPassport = () => {
               console.log('Error in Saving user: ' + err);
               return done(err);
             }
-            console.log(user);
+            console.log('user en passport newuser', newUser);
             console.log('User Registration succesful');
             return done(null, userWithId);
           });
