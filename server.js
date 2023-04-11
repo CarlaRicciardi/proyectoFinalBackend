@@ -4,6 +4,7 @@ const { startPassport } = require('./middlewares/passport.js');
 const { configMongoSession } = require('./middlewares/mongoSession.js');
 
 const router = require('./routes/index.js');
+const rootRouter = require('./routes/root.js');
 const config = require('./config/config.js');
 
 const app = express();
@@ -31,9 +32,9 @@ app.engine(
   }),
 );
 
+app.use('/', rootRouter);
 app.use('/api', router);
+
 httpServer.listen(config.PORT, () => {
   config.PORT, config.MONGO_URL, console.log(`Server listening on port http://localhost:${config.PORT}`);
 });
-
-
