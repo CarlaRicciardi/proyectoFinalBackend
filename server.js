@@ -2,6 +2,8 @@ const express = require('express');
 const passport = require('passport');
 const { startPassport } = require('./middlewares/passport.js');
 const { configMongoSession } = require('./middlewares/mongoSession.js');
+const connectMongoDB = require('./persistence/mongoDB.js');
+const modelUser = require('./persistence/daos/users/DaoMongoUsers.js');
 
 const router = require('./routes/index.js');
 const rootRouter = require('./routes/root.js');
@@ -15,6 +17,9 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(configMongoSession);
+const connectToDB = new connectMongoDB();
+connectToDB.connectDBMongo();
+
 startPassport();
 app.use(passport.initialize());
 app.use(passport.session());

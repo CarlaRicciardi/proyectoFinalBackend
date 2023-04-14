@@ -1,7 +1,7 @@
 const service = require('../service/products.js');
 
-async function getProducts(req, res) {
-  let allProducts = await service.getProducts();
+async function getAll(req, res) {
+  let allProducts = await service.getAll();
   const productsFixed = allProducts.map((item) => {
     return {
       id: item._id,
@@ -16,12 +16,6 @@ async function getProducts(req, res) {
       user: req.session.user,
     });
   }
-}
-
-async function getProductByName(req, res) {
-  let { name } = req.params;
-  let result = await service.getProductByName(name);
-  res.status(200).json(result);
 }
 
 async function getProductById(req, res) {
@@ -48,8 +42,7 @@ async function deleteProductById(req, res) {
 }
 
 module.exports = {
-  getProducts,
-  getProductByName,
+  getAll,
   getProductById,
   postProduct,
   putProductById,

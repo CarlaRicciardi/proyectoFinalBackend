@@ -1,78 +1,43 @@
-const DAO = require("../persistence/data");
-const ProductsDao = DAO[0];
-const container = ProductsDao.getInstance();
-const logger = require("../config/logger.js");
-const ProductsValidation = require("../config/validation.js");
+const config = require('../config/config.js');
+const PERSISTENCE = config.PERSISTENCE;
+const factoryDaoProducts = require('../persistence/daos/products/factoryDaoProducts.js');
+const DaoProducts = new factoryDaoProducts(PERSISTENCE);
 
-async function getProducts() {
-  let allProducts = await container.getAll();
-  return allProducts;
+async function getAll() {
+  try {
+    const allProducts = await DaoProducts.getAll();
+    return allProducts;
+  } catch (err) {
+    logger.log('error', 'error getAllProducts');
+  }
 }
 
-async function getProductByName(name) {
-  let result = await container.getByName(name);
-  if (!result || result.length < 1) {
-    return "No se encontró ningún producto";
+async function getById(id) {
+  let result = await DaoProducts.getById(id);
+  if (!result) {
+    return 'No se encontró ningún producto';
   }
   return result;
 }
 
-async function getProductById(id) {
-  let result = await container.getById(id);
-  if (!result) {
-    return "No se encontró ningún producto";
-  }
-  return result;
+async function saveNew(objProd) {
+  const saveProdInDB = await DaoProducts.saveNew(objProd);
 }
 
-async function postProduct(title, thumbnail, price) {
-  const { error, value } = await ProductsValidation.validate({
-    title: title,
-    thumbnail: thumbnail,
-    price: price,
-  });
-  if (error) {
-    logger.log("info", "Error de posteo: " + error);
-    return "No se pudo postear el producto";
-  }
-  let result = await container.save(title, thumbnail, price);
-  return result;
-}
+const replace = async (obj) => {
+  const updateProd = await DaoProducts.replace(obj);
+  return updateProd;
+};
 
-async function putProductById(id, title, thumbnail, price) {
-  let result = await container.getById(id);
-  if (!result) {
-    return "No se encontró ningún producto";
-  }
-  const { error, value } = await ProductsValidation.validate({
-    title: title,
-    thumbnail: thumbnail,
-    price: price,
-  });
-  if (error) {
-    logger.log("info", "Error de posteo: " + error);
-    return "No se pudo postear el producto";
-  } else {
-    let result = await container.replace(id, title, thumbnail, price);
-    return result;
-  }
-}
-
-async function deleteProductById(id) {
-  let result = await container.getById(id);
-  if (!result) {
-    return "No se encontró ningún producto";
-  } else {
-    let result = await container.deleteById(id);
-    return result;
-  }
-}
+const deleteProdFromDB = async (idp) => {
+  const productDeleted = await DaoProducts.deleteById(id);
+  return productDeleted;
+};
 
 module.exports = {
-  getProducts,
-  getProductByName,
-  getProductById,
-  postProduct,
-  putProductById,
-  deleteProductById,
+  getAll,
+  getById,
+  saveNew,
+  replace,
+  deleteProdFromDB,
 };
