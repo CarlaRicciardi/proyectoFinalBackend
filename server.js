@@ -3,7 +3,6 @@ const passport = require('passport');
 const { startPassport } = require('./middlewares/passport.js');
 const { configMongoSession } = require('./middlewares/mongoSession.js');
 const connectMongoDB = require('./persistence/mongoDB.js');
-const modelUser = require('./persistence/daos/users/DaoMongoUsers.js');
 
 const router = require('./routes/index.js');
 const rootRouter = require('./routes/root.js');

@@ -5,7 +5,7 @@ const DaoProducts = new factoryDaoProducts(PERSISTENCE);
 
 async function getAll() {
   try {
-    const allProducts = await DaoProducts.getAll();
+    const allProducts = await DaoProducts.getAll()
     return allProducts;
   } catch (err) {
     logger.log('error', 'error getAllProducts');

@@ -1,4 +1,5 @@
 const service = require('../service/products.js');
+const logger = require('../config/logger.js');
 
 async function getAll(req, res) {
   let allProducts = await service.getAll();
@@ -8,6 +9,7 @@ async function getAll(req, res) {
       title: item.title,
       price: item.price,
       thumbnail: item.thumbnail,
+      cartActual: item.cartActual,
     };
   });
   if (productsFixed) {
@@ -17,6 +19,7 @@ async function getAll(req, res) {
     });
   }
 }
+
 
 async function getProductById(req, res) {
   let { id } = req.params;
