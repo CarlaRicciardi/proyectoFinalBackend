@@ -20,11 +20,16 @@ async function getAll(req, res) {
   }
 }
 
-
 async function getProductById(req, res) {
-  let { id } = req.params;
-  let result = await service.getProductById(id);
-  res.status(200).json(result);
+  const { id } = req.params;
+  const product = await service.getProductById(id);
+  const idCart = req.user.cartActual;
+  if (!product) {
+    res.status(404).send('producto no encontrado');
+  } else {
+    res.render('allProducts', { data: { idCart, product } });
+    res.status(200).json(product);
+  }
 }
 
 async function postProduct(req, res) {

@@ -73,13 +73,21 @@
           <h5 class='card-title'>{{this.title}}</h5>
           <p class='card-text'>Precio por kg: ${{this.price}}</p>
         </div>
-        <form method='post' action='/api/cart/{{this.cartActual}}/products'>
+        <form method='post' action='/api/carts/{{this.cartActual}}'>
           <select name='units' id='units'>
             <option value='1'>0,5kg</option>
             <option value='2'>1kg</option>
             <option value='3'>2kg</option>
           </select>
-          <button class='btn btn-success w-100'>Agregar al carrito</button>
+          <div class='container container-btn bordes'>
+            <input name='idprod' id='idprod' value='{{data.prod._id}}' type='hidden' />
+            <input name='thumbnail' id='thumbnailprod' value='{{data.prod.thumbnail}}' type='hidden' />
+            <input name='title' id='titleprod' value='{{data.prod.title}}' type='hidden' />
+            <input name='price' id='priceprod' value='{{data.prod.price}}' type='hidden' />
+            <button type='submit' id='' class='btn btn-success w-100'>
+              Agregar al carrito
+            </button>
+          </div>
         </form>
       </div>
 
