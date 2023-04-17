@@ -1,0 +1,9 @@
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"{ username: 'prueba@gmail.com' }\" (type Object) at path \"_id\" for model \"model\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"{ username: 'prueba@gmail.com' }\"","value":{"username":"prueba@gmail.com"},"valueType":"Object"}

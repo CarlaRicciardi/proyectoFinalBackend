@@ -12,7 +12,7 @@ const createCart = async (username) => {
     const idCart = await DaoCarts.saveNew();
     const userWithCart = await saveCartIdInUser(username, idCart);
   } catch (err) {
-    logger.log('error', err);
+    logger.log('error createCart', err);
   }
 };
 

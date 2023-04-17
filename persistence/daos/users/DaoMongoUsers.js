@@ -14,8 +14,8 @@ const UserSchema = new mongoose.Schema({
 const modelUser = mongoose.model('users', UserSchema);
 
 class DaoUsersMongo {
-  constructor({ name, schema }) {
-    this.model = mongoose.model(name, schema);
+  constructor(model) {
+    this.model = model;
   }
 
   async getByUsername(username) {
@@ -33,7 +33,8 @@ class DaoUsersMongo {
     return user;
   }
   async addCartIdToUser(username, idCart) {
-    const user = await this.model.findByIdAndUpdate({ username: username }, { $set: { cartActual: idCart } });
+    const user = await this.model.
+    console.log('user en linea 37', user); //ACA ESTA EL PROBLEMA.. NO LLEGA ESTE CLG
     return user;
   }
 

@@ -19,12 +19,12 @@ const CartSchema = new mongoose.Schema(
 const CartsModel = mongoose.model('carts', CartSchema);
 
 class DaoMongoCart {
-  constructor(model) {
-    this.model = model
+  constructor(modelCart) {
+    this.modelCart = modelCart
   }
 
   async saveNew() {
-    const newCart = new this.CartsModel({
+    const newCart = new this.modelCart({
       productsCart: [],
     });
     const cartObj = await newCart.save();
@@ -38,7 +38,7 @@ class DaoMongoCart {
   }
 
   async getProductList(id) {
-    const cart = await this.model.findOne({ _id: id });
+    const cart = await this.modelCart.findOne({ _id: id });
     if (cart) {
       const productsCart = cart.productsCart;
       const productsMap = productsCart.map((item) => ({
@@ -54,21 +54,21 @@ class DaoMongoCart {
   }
 
   async getById(_id) {
-    const element = await this.model.findOne({ _id: _id });
+    const element = await this.modelCart.findOne({ _id: _id });
     return element;
   }
 
   async addProductToCart(objProd, id) {
-    const cartUpdated = await this.model.findOneAndUpdate({ _id: id }, { $push: { productsCart: objProd } }, { new: true });
+    const cartUpdated = await this.modelCart.findOneAndUpdate({ _id: id }, { $push: { productsCart: objProd } }, { new: true });
     return cartUpdated;
   }
 
   async deleteById(id) {
-    let cartDeleted = await this.model.deleteOne({ _id: id });
+    let cartDeleted = await this.modelCart.deleteOne({ _id: id });
   }
 
   async getProdInCart(idCart, idProd) {
-    const cart = await this.model.findOne({ _id: idCart });
+    const cart = await this.modelCart.findOne({ _id: idCart });
     const arrayProds = cart.productsCart;
     const findProd = arrayProds.find((el) => el._id == idProd);
     return findProd;
@@ -76,19 +76,19 @@ class DaoMongoCart {
 
   async addRepeatedProd(idProd, cantAntes, cantSum, idCart) {
     const newCant = cantAntes + cantSum;
-    const cart = await this.model.findOne({ _id: idCart });
+    const cart = await this.modelCart.findOne({ _id: idCart });
     const arrayProds = cart.productsCart;
     arrayProds.find((el) => el._id == idProd).quantity = newCant;
-    const cantUpdated = await this.model.findOneAndUpdate({ _id: idCart }, { $set: { productsCart: arrayProds } }, { new: true });
+    const cantUpdated = await this.modelCart.findOneAndUpdate({ _id: idCart }, { $set: { productsCart: arrayProds } }, { new: true });
     // const importTotal = arrayProds.reduce((acc, element) => acc + element.price * element.quantity, 0);
   }
 
   async deleteProd(id, idProd) {
-    const cart = await this.model.findOne({ _id: id });
+    const cart = await this.modelCart.findOne({ _id: id });
     const arrayProds = cart.productsCart;
     try {
       const newArray = arrayProds.filter((el) => el._id != idProd);
-      const cartUpdated = await this.model.findOneAndUpdate({ _id: id }, { $set: { productsCart: newArray } }, { new: true });
+      const cartUpdated = await this.modelCart.findOneAndUpdate({ _id: id }, { $set: { productsCart: newArray } }, { new: true });
     } catch (err) {
       logger.log('error', 'no se pudo eliminar producto del carrito ');
     }

@@ -5,7 +5,7 @@ const createCart = async (req, res) => {
   const { username } = req.user;
   await service.createCart(username);
   res.redirect('/api/products');
-  logger.log('info', '/api/carrito - POST');
+  logger.log('info', '/api/cart - POST');
 };
 
 const addProductToCart = async (req, res) => {
@@ -14,13 +14,13 @@ const addProductToCart = async (req, res) => {
     title: req.body.title,
     price: req.body.price,
     thumbnail: req.body.thumbnail,
-    quantity: req.body.unidades,
+    quantity: req.body.units,
   };
   const { id } = req.params;
   const idCart = id;
   await addProductToCart(objProd, idCart);
-  res.redirect(`/api/carrito/${idCart}/productos/`);
-  logger.log("info", "/api/carrito/:id/productos - POST");
+  res.redirect(`/api/carrito/${idCart}/products/`);
+  logger.log("info", "/api/cart/:id/products - POST");
 };
 
 // const getProductsController = async (req, res) => {

@@ -58,50 +58,5 @@
     <br />
     <button type='button' class='btn btn-danger'><a href='./logout' class='text-decoration-none text-reset'>Salir</a></button>
     <br />
-    {{! <button type='button' class='btn btn-outline-warning'><a href='/api/cart' style='text-decoration: none;'>Ir al carrito</a></button> }}
   </div>
 </section>
-
-<br />
-<h1 class='text-secondary text-center'>Listado de productos</h1>
-<div class='container mt-5 d-flex justify-content-between flex-wrap'>
-  {{#if products}}
-    {{#each products}}
-      <div class='card m-5' style='width:18rem'>
-        <img src='{{this.thumbnail}}' class='card-img-top' alt={{this.title}} />
-        <div class='card-body d-flex flex-column justify-content-between'>
-          <h5 class='card-title'>{{this.title}}</h5>
-          <p class='card-text'>Precio por kg: ${{this.price}}</p>
-        </div>
-        <form method='post' action='/api/carts/{{this.cartActual}}'>
-          <select name='units' id='units'>
-            <option value='1'>0,5kg</option>
-            <option value='2'>1kg</option>
-            <option value='3'>2kg</option>
-          </select>
-          <div class='container container-btn bordes'>
-            <input name='idprod' id='idprod' value='{{data.prod._id}}' type='hidden' />
-            <input name='thumbnail' id='thumbnailprod' value='{{data.prod.thumbnail}}' type='hidden' />
-            <input name='title' id='titleprod' value='{{data.prod.title}}' type='hidden' />
-            <input name='price' id='priceprod' value='{{data.prod.price}}' type='hidden' />
-            <button type='submit' id='' class='btn btn-success w-100'>
-              Agregar al carrito
-            </button>
-          </div>
-        </form>
-      </div>
-
-    {{/each}}
-  {{else}}
-    <h1 class='text-center'>No se encontraron productos</h1>
-  {{/if}}
-</div>
-
-<br />
-<br />
-<br />
-<br />
-
-{{! <form class='mb-0' action='/api/addProd' method='POST'>
-  <button class='btn btn-success w-100'>Agregar un producto</button>
-</form> }}

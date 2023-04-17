@@ -47,6 +47,7 @@ const getUserById = async (id) => {
 
 const saveCartIdInUser = async (username, idCart) => {
   const user = await DaoUsers.addCartIdToUser(username, idCart);
+  console.log('user despues del addCartIdToUser', user)
 };
 
 const updateEmptyCartInUser = async (username) => {
@@ -55,8 +56,6 @@ const updateEmptyCartInUser = async (username) => {
 
 module.exports = {
   createUser,
-  // postLogin,
-  // postSignup,
   saveCartIdInUser,
   updateEmptyCartInUser,
   getUser,
