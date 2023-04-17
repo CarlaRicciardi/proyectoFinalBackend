@@ -24,42 +24,15 @@
             <button class='link-navbar btn btn-outline-success'>
               <a href='/chat' class='text-decoration-none text-reset'>Chat de Soporte</a></button>
           </li> }}
+          <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
+            <button id='' class='link-navbar btn btn-outline-danger'>
+              <a href='/api/logout' class='text-decoration-none text-reset'>Cerrar Sesion</a>
+            </button>
+          </li>
         </ul>
       </div>
     </nav>
   </header>
-
-  <h1 class='text-secondary text-center text-success'>Hola,
-    {{user.name}}!</h1>
-
-  <div class='mb-3'>
-    <div>
-      <label class='form-label fw-bold text-secondary fs-3' for='login'>Tus datos son:</label>
-      <div>
-        usuario:
-        {{user.username}}
-        <br />
-        Nombre:
-        {{user.name}}
-        <br />
-        Direccion:
-        {{user.address}}
-        <br />
-        Edad:
-        {{user.age}}
-        <br />
-        Telefono:
-        {{user.phone}}
-        <br />
-        Imagen:
-        {{user.url}}
-      </div>
-    </div>
-    <br />
-    <button type='button' class='btn btn-danger'><a href='./logout' class='text-decoration-none text-reset'>Salir</a></button>
-    <br />
-    {{! <button type='button' class='btn btn-outline-warning'><a href='/api/cart' style='text-decoration: none;'>Ir al carrito</a></button> }}
-  </div>
 </section>
 
 <br />
@@ -73,17 +46,17 @@
           <h5 class='card-title'>{{this.title}}</h5>
           <p class='card-text'>Precio por kg: ${{this.price}}</p>
         </div>
-        <form method='post' action='/api/carts/{{this.cartActual}}'>
+        <form method='post' action='/api/cart/{{data.product.idCart}}'>
           <select name='units' id='units'>
             <option value='1'>0,5kg</option>
             <option value='2'>1kg</option>
             <option value='3'>2kg</option>
           </select>
           <div class='container container-btn bordes'>
-            <input name='idprod' id='idprod' value='{{data.prod._id}}' type='hidden' />
-            <input name='thumbnail' id='thumbnailprod' value='{{data.prod.thumbnail}}' type='hidden' />
-            <input name='title' id='titleprod' value='{{data.prod.title}}' type='hidden' />
-            <input name='price' id='priceprod' value='{{data.prod.price}}' type='hidden' />
+            <input name='idprod' id='idprod' value='{{data.product._id}}' type='hidden' />
+            <input name='thumbnail' id='thumbnailprod' value='{{data.product.thumbnail}}' type='hidden' />
+            <input name='title' id='titleprod' value='{{data.product.title}}' type='hidden' />
+            <input name='price' id='priceprod' value='{{data.product.price}}' type='hidden' />
             <button type='submit' id='' class='btn btn-success w-100'>
               Agregar al carrito
             </button>
@@ -96,12 +69,3 @@
     <h1 class='text-center'>No se encontraron productos</h1>
   {{/if}}
 </div>
-
-<br />
-<br />
-<br />
-<br />
-
-{{! <form class='mb-0' action='/api/addProd' method='POST'>
-  <button class='btn btn-success w-100'>Agregar un producto</button>
-</form> }}

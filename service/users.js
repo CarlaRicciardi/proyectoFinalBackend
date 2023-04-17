@@ -31,15 +31,14 @@ const getUserById = async (id) => {
   return user;
 };
 
-// const postLogin = async (username, password, password2) => {
-//   const user = await findUser(username);
-//   if (password === password2) {
-//     return user;
-//   } else {
-//     logger.log('error', 'password no coincide');
-//     return false;
-//   }
-// };
+const postLogin = async (username, password) => {
+  const user = await getUser(username);
+  if (user) {
+    return user;
+  } else {
+    logger.log('error en postLogin');
+  }
+};
 
 // const postSignup = async (user) => {
 //   const emailRegister = await sendNewRegisterToAdmin(user);
@@ -47,7 +46,6 @@ const getUserById = async (id) => {
 
 const saveCartIdInUser = async (username, idCart) => {
   const user = await DaoUsers.addCartIdToUser(username, idCart);
-  console.log('user despues del addCartIdToUser', user)
 };
 
 const updateEmptyCartInUser = async (username) => {
@@ -60,4 +58,5 @@ module.exports = {
   updateEmptyCartInUser,
   getUser,
   getUserById,
+  postLogin,
 };

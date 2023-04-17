@@ -16,11 +16,11 @@ const addProductToCart = async (req, res) => {
     thumbnail: req.body.thumbnail,
     quantity: req.body.units,
   };
-  const { id } = req.params;
-  const idCart = id;
-  await addProductToCart(objProd, idCart);
-  res.redirect(`/api/carrito/${idCart}/products/`);
-  logger.log("info", "/api/cart/:id/products - POST");
+  const { idCart } = req.params;
+  // const idCart = id;
+  await service.addProductToCart(objProd, idCart);
+  res.redirect(`/api/cart/${idCart}/`);
+  logger.log("info", "/api/cart/:id - POST");
 };
 
 // const getProductsController = async (req, res) => {
@@ -74,9 +74,9 @@ const addProductToCart = async (req, res) => {
 
 module.exports = {
   createCart,
+  addProductToCart,
   // deleteCartController,
   // getProductsController,
-  // addProductToCartController,
   // deleteProdFromCartController,
   // confirmOrderController,
 };

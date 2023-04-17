@@ -33,8 +33,7 @@ class DaoUsersMongo {
     return user;
   }
   async addCartIdToUser(username, idCart) {
-    const user = await this.model.
-    console.log('user en linea 37', user); //ACA ESTA EL PROBLEMA.. NO LLEGA ESTE CLG
+    const user = await this.model.findOneAndUpdate({ username: username }, { $set: { cartActual: idCart } });
     return user;
   }
 

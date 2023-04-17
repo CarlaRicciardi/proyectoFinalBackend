@@ -10,7 +10,7 @@ const getLogin = (req, res) => {
   if (req.isAuthenticated()) {
     const { username, password } = req.user;
     const user = { username, password };
-    res.render('allProducts', { user });
+    res.render('profileUser', { user });
   } else {
     res.render('login');
   }
@@ -21,21 +21,21 @@ const getFailLogin = (req, res) => {
   res.render('failLogin');
 };
 
-const postLogin = (req, res) => {
-  logger.info('postLogin');
-  const { username, password, name, address, age, phone, url } = req.user;
-  const user = { username, password, name, address, age, phone, url };
-  req.session.user = user;
-  res.redirect('/api/products');
+const postLogin = async (req, res) => {
+  logger.log('info', '/login - POST - render profileUser');
+  const { username, password } = req.user;
+  const user = await service.postLogin(username, password);
+  if (user) {
+    res.render('profileUser', { user });
+  }
 };
 
 const getSignup = (req, res) => {
-  logger.info('getSignUp');
+  logger.log('info', '/signup - GET');
   if (req.isAuthenticated()) {
     const { username, password, name, address, age, phone, url } = req.user;
     const user = { username, password, name, address, age, phone, url };
-    req.session.user = user;
-    res.redirect('/api/products');
+    res.render('profileUser', { user });
   } else {
     res.render('signup');
   }
@@ -46,12 +46,12 @@ const getFailSignup = (req, res) => {
   res.render('failSignup');
 };
 
-const postSignup = (req, res) => {
-  logger.info('postSignup');
+const postSignup = async (req, res) => {
+  logger.log('info', '/signup - POST');
   const { username, password, name, address, age, phone, url } = req.user;
   const user = { username, password, name, address, age, phone, url };
-  // service.signupMail(username)
-  res.render('successSignup', { user });
+  // await service.postSignup(user) //envio mail nodemailer
+  res.render('profileUser', { user });
 };
 
 const getLogout = (req, res) => {
