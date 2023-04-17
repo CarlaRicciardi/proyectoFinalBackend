@@ -23,29 +23,29 @@ const addProductToCart = async (req, res) => {
   logger.log("info", "/api/cart/:id - POST");
 };
 
-// const getProductsController = async (req, res) => {
-//   try {
-//     const user = req.user;
-//     const username = user.username;
-//     const id = user.carritoactual;
-//     if (id != "empty") {
-//       const productosMap = await getProducts(id);
-//       if (productosMap) {
-//         res.render("carrito", { productosMap, id, username });
-//         logger.log("info", "/api/carrito/:id/productos - GET");
-//       } else {
-//         logger.log("error", "no se puedo acceder a lista de productos");
-//       }
-//     } else {
-//       res.render("carrito-vacio");
-//     }
-//   } catch (err) {
-//     logger.log(
-//       "error",
-//       "no se puedo acceder a lista de productos o no existe el carrito en el user"
-//     );
-//   }
-// };
+const getProducts = async (req, res) => {
+  try {
+    const user = req.user;
+    const username = user.username;
+    const id = user.carritoactual;
+    if (id != "empty") {
+      const productosMap = await getProducts(id);
+      if (productosMap) {
+        res.render("carrito", { productosMap, id, username });
+        logger.log("info", "/api/carrito/:id/productos - GET");
+      } else {
+        logger.log("error", "no se puedo acceder a lista de productos");
+      }
+    } else {
+      res.render("carrito-vacio");
+    }
+  } catch (err) {
+    logger.log(
+      "error",
+      "no se puedo acceder a lista de productos o no existe el carrito en el user"
+    );
+  }
+};
 
 // const deleteCartController = async (req, res) => {
 //   const { id } = req.body;
@@ -75,6 +75,7 @@ const addProductToCart = async (req, res) => {
 module.exports = {
   createCart,
   addProductToCart,
+  getProducts
   // deleteCartController,
   // getProductsController,
   // deleteProdFromCartController,

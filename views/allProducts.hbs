@@ -17,7 +17,7 @@
           </li>
           <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
             <button id='' class='link-navbar btn btn-outline-success'>
-              <a href='/api/cart/{{user.cartActual}}/products' class='text-decoration-none text-reset'>Ver Carrito</a>
+              <a href='/api/cart/{{user.cartActual}}' class='text-decoration-none text-reset'>Ver Carrito</a>
             </button>
           </li>
           {{! <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
@@ -46,7 +46,7 @@
           <h5 class='card-title'>{{this.title}}</h5>
           <p class='card-text'>Precio por kg: ${{this.price}}</p>
         </div>
-        <form method='post' action='/api/cart/{{data.product.idCart}}'>
+        <form method='post' action='/api/cart/{{data.product.idCart}}/products'>
           <select name='units' id='units'>
             <option value='1'>0,5kg</option>
             <option value='2'>1kg</option>

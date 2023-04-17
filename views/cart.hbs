@@ -1,62 +1,49 @@
-{{!-- <body>
     <header class="container-fluid" id="header">
         <nav id="navbar">
             <div class="container-fluid">
 
                 <ul style="display:flex; flex-direction:row; justify-content:space-around;">
-                    <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
+                    {{!-- <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
                         <a class="link-navbar" href="/api/admin"
                             style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.5rem;">Administración</a>
-                    </li>
-                    <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
-                        <a class="link-navbar" href="/api/usuarios/login"
-                            style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.5rem;">Mi
-                            Perfil</a>
-                    </li>
-
+                    </li> --}}
                     <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
                         <form method="get" action="/api/productos/seguir-comprando">
-                            <button type="submit" class="link-navbar"
-                                style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.2rem; background-color:white; border-width:0;">
+                            <button type="submit" class="link-navbar btn btn-outline-success">
                                 Seguir comprando</button>
                         </form>
                     </li>
                     <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
-                        <form method="post" action="/api/carrito/confirmar-pedido">
+                        <form method="post" action="/api/cart/confirmOrder">
                             <input name="id" value="{{id}}" type="hidden">
                             <input name="username" value="{{username}}" type="hidden">
-                            <button type="submit" class="link-navbar"
-                                style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.2rem; background-color:white; border-width:0;">
+                            <button type="submit" class="link-navbar btn btn-outline-success">
                                 Confirmar pedido</button>
                         </form>
                     </li>
-                    <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
+                    {{!-- <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
                         <button
                             style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.2rem; background-color:white; border-width:0;">
                             <a class="link-navbar"
                                 style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140);"
                                 href="/chat">Chat</a></button>
-                    </li>
+                    </li> --}}
 
-                    <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
-                        <button
-                            style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.2rem; background-color:white; border-width:0;">
-                            <a class="link-navbar"
-                                style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140);"
-                                href="/logout">Cerrar sesión</a></button>
-                    </li>
+          <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
+            <button id='' class='link-navbar btn btn-outline-danger'>
+              <a href='/api/logout' class='text-decoration-none text-reset'>Cerrar Sesion</a>
+            </button>
+          </li>
                 </ul>
 
             </div>
         </nav>
     </header>
 
-
-    <h1 style="color:rgb(57, 4, 90); margin:20px;" id="titulo-carrito">Mi Carrito</h1>
-    <form method="post" action="/api/carrito/delcart?_method=delete">
+    <h1 class='text-secondary text-center text-success'>Mi Carrito</h1>
+    <form method="post" action="/api/cart/delcart?_method=delete">
         <input name="id" value="{{id}}" type="hidden">
-        <button type="submit" class="link-navbar"
-            style="font-size:1.3rem; color:rgb(218, 193, 222); background-color:rgb(49, 11, 52); margin-left:20px; padding:5px; border-width:0; border-radius:4px;">
+        <button type="submit" class="link-navbar btn btn-outline-danger">
             Vaciar carrito</button>
     </form>
     <table style="margin:20px; background-color:rgb(178, 159, 181); color:rgb(45, 5, 52);" height="400px">
@@ -67,9 +54,9 @@
             <th rowspan="3" colspan="15">Cantidad</th>
             <th rowspan="3" colspan="15"></th>
         </tr>
-        <tbody id="carrito">
+        <tbody id="cart">
             
-            {{#each productosMap}}
+            {{#each productsMap}}
             <tr>
                 <td rowspan="1" colspan="10" style="color:rgb(92, 0, 128); text-align:center; padding:5px;">
                     <div style="width: 120px;
@@ -94,20 +81,17 @@
                     {{this.quantity}}
                 </td>
                 <td rowspan="1" colspan="20" style="font-weight:bold; text-align:center; padding:5px;">
-                    <form method="post" action="/api/carrito/productos?_method=delete">
-                    
+
+                    <form method="post" action="/api/cart/products?_method=delete">
                         <input name="prod" id="prod" value="{{this._id}}" type="hidden">
                         <button type="submit" id=""
                             style="color:white; background-color:rgb(63, 8, 63); margin:20px; border-radius:3px; border-width:0px; padding:8px;">
                             Eliminar
                         </button>
                         </form>
-                    
                 </td>
             </tr>
             {{/each}}
             
         </tbody>
     </table>
-
-</body> --}}
