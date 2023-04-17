@@ -27,17 +27,21 @@ const getProducts = async (req, res) => {
   try {
     const user = req.user;
     const username = user.username;
-    const id = user.carritoactual;
-    if (id != "empty") {
-      const productosMap = await getProducts(id);
-      if (productosMap) {
-        res.render("carrito", { productosMap, id, username });
-        logger.log("info", "/api/carrito/:id/productos - GET");
+    const idCart = user.cartActual;
+    console.log('user', user)
+    console.log('user', username)
+    console.log('user', idCart)
+
+    if (idCart != "empty") {
+      const productsMap = await service.getProducts(idCart);
+      if (productsMap) {
+        res.render("carts", { productsMap, idCart, username });
+        logger.log("info", "/api/cart/:id/productos - GET");
       } else {
         logger.log("error", "no se puedo acceder a lista de productos");
       }
     } else {
-      res.render("carrito-vacio");
+      res.render("cartEmpty");
     }
   } catch (err) {
     logger.log(
@@ -75,7 +79,7 @@ const getProducts = async (req, res) => {
 module.exports = {
   createCart,
   addProductToCart,
-  getProducts
+  getProducts,
   // deleteCartController,
   // getProductsController,
   // deleteProdFromCartController,
