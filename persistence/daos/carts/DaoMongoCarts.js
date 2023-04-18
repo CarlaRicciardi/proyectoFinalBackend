@@ -58,8 +58,9 @@ class DaoMongoCart {
     return element;
   }
 
-  async addProductToCart(objProd, id) {
+  async AddProdToCart(objProd, id) {
     const cartUpdated = await this.modelCart.findOneAndUpdate({ _id: id }, { $push: { productsCart: objProd } }, { new: true });
+    console.log('cartUpdated', cartUpdated)
     return cartUpdated;
   }
 

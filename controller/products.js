@@ -2,8 +2,10 @@ const service = require('../service/products.js');
 const logger = require('../config/logger.js');
 
 async function getAll(req, res) {
-  const user = req.user
+  const user = {idCart: req.user.cartActual}
   const idCart = req.user.cartActual
+  // console.log('user:', user)
+  // console.log('idCart', idCart)
   let allProducts = await service.getAll();
   const productsFixed = allProducts.map((item) => {
     return {
@@ -11,13 +13,14 @@ async function getAll(req, res) {
       title: item.title,
       price: item.price,
       thumbnail: item.thumbnail,
+      idCart: idCart
     };
   });
   if (productsFixed) {
     res.render('allProducts', {
       products: productsFixed,
       user: user,
-      idCart: idCart
+      // idCart: idCart
     });
   }
 }

@@ -46,14 +46,14 @@
           <h5 class='card-title'>{{this.title}}</h5>
           <p class='card-text'>Precio por kg: ${{this.price}}</p>
         </div>
-        <form method='POST' action='/api/cart/{{idCart}}/products'>
+        <form method='POST' action='/api/cart/{{this.idCart}}/products'>
           <select name='units' id='units'>
             <option value='1'>0,5kg</option>
             <option value='2'>1kg</option>
             <option value='3'>2kg</option>
           </select>
           <div class='container container-btn bordes'>
-            <input name='idprod' id='idprod' value='{{this._id}}' type='hidden' />
+            <input name='idprod' id='idprod' value='{{this.id}}' type='hidden' />
             <input name='thumbnail' id='thumbnailprod' value='{{this.thumbnail}}' type='hidden' />
             <input name='title' id='titleprod' value='{{this.title}}' type='hidden' />
             <input name='price' id='priceprod' value='{{this.price}}' type='hidden' />

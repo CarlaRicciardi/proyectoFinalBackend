@@ -9,7 +9,6 @@ const createCart = async (req, res) => {
 };
 
 const addProductToCart = async (req, res) => {
-  console.log('holaaaaaa')
   const objProd = {
     _id: req.body.idprod,
     title: req.body.title,
@@ -18,7 +17,7 @@ const addProductToCart = async (req, res) => {
     quantity: req.body.units,
   };
   console.log('objProd',objProd )
-  const { idCart } = req.user;
+  const idCart = req.user.cartActual
   console.log('idCart:', idCart)
   await service.addProductToCart(objProd, idCart);
   res.redirect(`/api/cart/${idCart}/products`);

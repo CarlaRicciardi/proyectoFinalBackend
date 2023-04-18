@@ -66,3 +66,7 @@
 {"level":"warn","message":"failRoute"}
 {"level":"warn","message":"failRoute"}
 {"level":"warn","message":"failRoute"}
+{"level":"error","message":"no se pudo agregar producto al carrito"}
+{"level":"error","message":"no se pudo agregar producto al carrito"}
+{"level":"error","message":"no se pudo agregar producto al carrito"}
+{"level":"error","message":"no se pudo agregar producto al carrito"}
