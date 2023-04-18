@@ -35,6 +35,7 @@ const addProductToCart = async (objProd, idCart) => {
 
 const getProducts = async (idCart) => {
   const productList = await DaoCarts.getProductList(idCart);
+  console.log('getproductssss', productList)
   if (productList) {
     return productList;
   } else {

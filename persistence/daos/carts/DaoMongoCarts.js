@@ -46,6 +46,7 @@ class DaoMongoCart {
         title: item.title,
         price: item.price,
         thumbnail: item.thumbnail,
+        quantity: item.quantity
       }));
       return productsMap;
     } else {
@@ -60,7 +61,6 @@ class DaoMongoCart {
 
   async AddProdToCart(objProd, id) {
     const cartUpdated = await this.modelCart.findOneAndUpdate({ _id: id }, { $push: { productsCart: objProd } }, { new: true });
-    console.log('cartUpdated', cartUpdated)
     return cartUpdated;
   }
 
@@ -71,6 +71,7 @@ class DaoMongoCart {
   async getProdInCart(idCart, idProd) {
     const cart = await this.modelCart.findOne({ _id: idCart });
     const arrayProds = cart.productsCart;
+    console.log('arrayprodssss', arrayProds)
     const findProd = arrayProds.find((el) => el._id == idProd);
     return findProd;
   }
@@ -81,11 +82,10 @@ class DaoMongoCart {
     const arrayProds = cart.productsCart;
     arrayProds.find((el) => el._id == idProd).quantity = newCant;
     const cantUpdated = await this.modelCart.findOneAndUpdate({ _id: idCart }, { $set: { productsCart: arrayProds } }, { new: true });
-    // const importTotal = arrayProds.reduce((acc, element) => acc + element.price * element.quantity, 0);
   }
 
   async deleteProd(idCart, idProd) {
-    const cart = await this.modelCart.findOne({ _id: id });
+    const cart = await this.modelCart.findOne({ _id: idCart });
     const arrayProds = cart.productsCart;
     try {
       const newArray = arrayProds.filter((el) => el._id != idProd);

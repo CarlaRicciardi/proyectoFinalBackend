@@ -16,9 +16,7 @@ const addProductToCart = async (req, res) => {
     thumbnail: req.body.thumbnail,
     quantity: req.body.units,
   };
-  console.log('objProd',objProd )
   const idCart = req.user.cartActual
-  console.log('idCart:', idCart)
   await service.addProductToCart(objProd, idCart);
   res.redirect(`/api/cart/${idCart}/products`);
   logger.log("info", "/api/cart/:id - POST");
@@ -51,7 +49,10 @@ const getProducts = async (req, res) => {
 
 const deleteCart = async (req, res) => {
   const { idCart } = req.body;
+  console.log('idCart>>>', idCart)
   const { username } = req.user;
+  console.log('username>>>', username)
+
   const carritoEliminado = await service.deleteCart(idCart, username);
   logger.log("info", "/api/cart/delcart - DELETE  eliminar carrito");
   res.redirect("/api//login");

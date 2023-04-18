@@ -27,7 +27,7 @@ async function getAll(req, res) {
 
 async function getProductById(req, res) {
   const { id } = req.params;
-  const product = await service.getProductById(id);
+  const product = await service.getById(id);
   const idCart = req.user.cartActual;
   if (!product) {
     res.status(404).send('producto no encontrado');
@@ -54,10 +54,26 @@ async function deleteProductById(req, res) {
   res.status(202).json(result);
 }
 
+const keepShopping = async (req, res) => {
+  const user = req.user;
+  const cart = user.cartActual;
+  if (cart != "empty") {
+    res.redirect("/api/products");
+    logger.log(
+      "info",
+      "/api/products/keepShopping - GET  keepShopping"
+    );
+  } else {
+    res.redirect("/api/cart");
+  }
+};
+
+
 module.exports = {
   getAll,
   getProductById,
   postProduct,
   putProductById,
   deleteProductById,
+  keepShopping,
 };
