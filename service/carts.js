@@ -5,7 +5,7 @@ const FactoryDaoCarts = require('../persistence/daos/carts/factoryDaoCarts.js');
 const DaoCarts = new FactoryDaoCarts(PERSISTENCE);
 
 const { saveCartIdInUser, updateEmptyCartInUser, getUser } = require('./users.js');
-// const saveShopOrderAndSend = require("../services/shop-orders");
+const saveShopOrderAndSend = require("../service/shopOrders");
 
 const createCart = async (username) => {
   try {
@@ -55,8 +55,8 @@ const deleteProdFromCart = async (idCart, idProd) => {
 const confirmOrder = async (username, idCart) => {
   const user = await getUser(username);
   const products = await DaoCarts.getProductList(idCart);
-const guardarOrdenYMandarMensajes = await saveShopOrderAndSend(
-  productos,
+const saveOrderAndSend = await saveShopOrderAndSend(
+  products,
   user
 );
 };

@@ -9,6 +9,7 @@ const createCart = async (req, res) => {
 };
 
 const addProductToCart = async (req, res) => {
+  console.log('holaaaaaa')
   const objProd = {
     _id: req.body.idprod,
     title: req.body.title,
@@ -16,10 +17,11 @@ const addProductToCart = async (req, res) => {
     thumbnail: req.body.thumbnail,
     quantity: req.body.units,
   };
-  const { idCart } = req.params;
-  // const idCart = id;
+  console.log('objProd',objProd )
+  const { idCart } = req.user;
+  console.log('idCart:', idCart)
   await service.addProductToCart(objProd, idCart);
-  res.redirect(`/api/cart/${idCart}/`);
+  res.redirect(`/api/cart/${idCart}/products`);
   logger.log("info", "/api/cart/:id - POST");
 };
 
@@ -28,14 +30,11 @@ const getProducts = async (req, res) => {
     const user = req.user;
     const username = user.username;
     const idCart = user.cartActual;
-    console.log('user', user)
-    console.log('user', username)
-    console.log('user', idCart)
 
     if (idCart != "empty") {
       const productsMap = await service.getProducts(idCart);
       if (productsMap) {
-        res.render("carts", { productsMap, idCart, username });
+        res.render("cart", { productsMap, idCart, username });
         logger.log("info", "/api/cart/:id/productos - GET");
       } else {
         logger.log("error", "no se puedo acceder a lista de productos");
@@ -70,10 +69,10 @@ const deleteProdFromCart = async (req, res) => {
 
 const confirmOrder = async (req, res) => {
   const { username } = req.body;
-  const { id } = req.body;
-  const enviarMensajes = await confirmOrder(username, id);
-  res.render("pedido-exitoso");
-  logger.log("info", "/api/carrito/confirmar-pedido - POST");
+  const { id } = req.body; //es el id del carrito??? idCart?
+  const sendMsg = await service.confirmOrder(username, id);
+  res.render("orderSuccessful");
+  logger.log("info", "/api/cart/confirmOrder - POST");
 };
 
 module.exports = {

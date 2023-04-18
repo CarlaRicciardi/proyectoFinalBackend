@@ -13,6 +13,6 @@ routerUsers.post('/signup', passport.authenticate('signup', { failureRedirect: '
 routerUsers.get('/failSignup', controller.getFailSignup);
 
 
-routerUsers.get('*', controller.failRoute);
+// routerUsers.get('*', controller.failRoute);
 
 module.exports = routerUsers;
