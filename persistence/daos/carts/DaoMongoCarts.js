@@ -83,7 +83,7 @@ class DaoMongoCart {
     // const importTotal = arrayProds.reduce((acc, element) => acc + element.price * element.quantity, 0);
   }
 
-  async deleteProd(id, idProd) {
+  async deleteProd(idCart, idProd) {
     const cart = await this.modelCart.findOne({ _id: id });
     const arrayProds = cart.productsCart;
     try {

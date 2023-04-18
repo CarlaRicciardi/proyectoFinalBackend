@@ -33,8 +33,8 @@ const addProductToCart = async (objProd, idCart) => {
   }
 };
 
-const getProducts = async (id) => {
-  const productList = await DaoCarts.getProductList(id);
+const getProducts = async (idCart) => {
+  const productList = await DaoCarts.getProductList(idCart);
   if (productList) {
     return productList;
   } else {
@@ -47,19 +47,19 @@ const deleteCart = async (idCart, username) => {
   const cartEmpty = await updateEmptyCartInUser(username);
 };
 
-const deleteProdFromCart = async (id, idProd) => {
-  const delProd = await DaoCarts.deleteProd(id, idProd);
+const deleteProdFromCart = async (idCart, idProd) => {
+  const delProd = await DaoCarts.deleteProd(idCart, idProd);
   return 'prod eliminado';
 };
 
-// const confirmOrder = async (username, idCart) => {
-//   const user = await getUser(username);
-//   const products = await DaoCarts.getProductList(idCart);
-// const guardarOrdenYMandarMensajes = await saveShopOrderAndSend(
-//   productos,
-//   user
-// );
-// };
+const confirmOrder = async (username, idCart) => {
+  const user = await getUser(username);
+  const products = await DaoCarts.getProductList(idCart);
+const guardarOrdenYMandarMensajes = await saveShopOrderAndSend(
+  productos,
+  user
+);
+};
 
 module.exports = {
   createCart,
@@ -67,5 +67,5 @@ module.exports = {
   getProducts,
   deleteProdFromCart,
   addProductToCart,
-  // confirmOrder,
+  confirmOrder,
 };

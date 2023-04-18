@@ -5,7 +5,7 @@ if (process.env.MODE != 'prod') {
 const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 let PERSISTENCE = process.argv[2];
-let PERSISTENCEUSERS = 'MONGO';
+let PERSISTENCE_USERS = 'MONGO';
 
 
-module.exports = { PORT, MONGO_URL, PERSISTENCE, PERSISTENCEUSERS };
+module.exports = { PORT, MONGO_URL, PERSISTENCE, PERSISTENCE_USERS };

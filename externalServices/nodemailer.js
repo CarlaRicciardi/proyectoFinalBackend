@@ -1,17 +1,18 @@
-// const logger = require('../config/logger.js');
-// const config = require('../config/config.js');
-// const nodemailer = require('nodemailer');
+const logger = require('../config/logger');
+const config = require('../config/config.js');
+const nodemailer = require('nodemailer');
 
-// const ADMIN_MAIL = process.env.ADMIN_MAIL;
+const NODEMAILER_MAIL = process.env.NODEMAILER_MAIL;
+const NODEMAILER_PASS = process.env.NODEMAILER_PASS
 
-// const transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   port: 587,
-//   auth: {
-//     user: config.TRANSPORTERUSER,
-//     pass: config.TRANSPORTERAUTH,
-//   },
-// });
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  port: 587,
+  auth: {
+    user: NODEMAILER_MAIL,
+    pass: NODEMAILER_PASS,
+  },
+});
 
 // const sendOrderMailToAdmin = async (productos, user, fecha, estado, orderNumber) => {
 //   const listaPedido = productos.map((item) => `<li> ${item.title}   $${item.price}   x   ${item.quantity} u.</li>`).join(' ');

@@ -51,37 +51,36 @@ const getProducts = async (req, res) => {
   }
 };
 
-// const deleteCartController = async (req, res) => {
-//   const { id } = req.body;
-//   const { username } = req.user;
-//   const carritoEliminado = await deleteCart(id, username);
-//   logger.log("info", "/api/carrito/delcart - DELETE  eliminar carrito");
-//   res.redirect("/api/usuarios/login");
-// };
+const deleteCart = async (req, res) => {
+  const { idCart } = req.body;
+  const { username } = req.user;
+  const carritoEliminado = await service.deleteCart(idCart, username);
+  logger.log("info", "/api/cart/delcart - DELETE  eliminar carrito");
+  res.redirect("/api//login");
+};
 
-// const deleteProdFromCartController = async (req, res) => {
-//   const { prod } = req.body;
-//   const user = req.user;
-//   const id = user.carritoactual;
-//   const eliminarProd = await deleteProdFromCart(id, prod);
-//   res.redirect(`/api/carrito/${id}/productos`);
-//   logger.log("info", "/api/carrito/productos - DELETE");
-// };
+const deleteProdFromCart = async (req, res) => {
+  const { prod } = req.body;
+  const user = req.user;
+  const idCart = user.carritoactual;
+  const eliminarProd = await service.deleteProdFromCart(idCart, prod);
+  res.redirect(`/api/cart/${idCart}/products`);
+  logger.log("info", "/api/cart/products - DELETE");
+};
 
-// const confirmOrderController = async (req, res) => {
-//   const { username } = req.body;
-//   const { id } = req.body;
-//   const enviarMensajes = await confirmOrder(username, id);
-//   res.render("pedido-exitoso");
-//   logger.log("info", "/api/carrito/confirmar-pedido - POST");
-// };
+const confirmOrder = async (req, res) => {
+  const { username } = req.body;
+  const { id } = req.body;
+  const enviarMensajes = await confirmOrder(username, id);
+  res.render("pedido-exitoso");
+  logger.log("info", "/api/carrito/confirmar-pedido - POST");
+};
 
 module.exports = {
   createCart,
   addProductToCart,
   getProducts,
-  // deleteCartController,
-  // getProductsController,
-  // deleteProdFromCartController,
-  // confirmOrderController,
+  deleteCart,
+  deleteProdFromCart,
+  confirmOrder,
 };
