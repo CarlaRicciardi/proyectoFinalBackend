@@ -4,7 +4,7 @@ mongoose.set('strictQuery', false);
 const OrdersSchema = new mongoose.Schema({
   items: { type: Array, required: true },
   numOrden: { type: Number, required: true },
-  time: { type: String, required: true },
+  date: { type: String, required: true },
   state: { type: String, required: true },
   emailUser: { type: String, required: true, max: 100 },
 });

@@ -37,8 +37,8 @@ class DaoMongoCart {
     return all;
   }
 
-  async getProductList(id) {
-    const cart = await this.modelCart.findOne({ _id: id });
+  async getProductList(idCart) {
+    const cart = await this.modelCart.findOne({ _id: idCart });
     if (cart) {
       const productsCart = cart.productsCart;
       const productsMap = productsCart.map((item) => ({
@@ -48,6 +48,7 @@ class DaoMongoCart {
         thumbnail: item.thumbnail,
         quantity: item.quantity
       }));
+      console.log('productsMap en getprodlist', productsMap) //llega perfecto productsMap
       return productsMap;
     } else {
       return false;

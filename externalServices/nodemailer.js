@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 
 const NODEMAILER_MAIL = process.env.NODEMAILER_MAIL;
 const NODEMAILER_PASS = process.env.NODEMAILER_PASS
+const ADMIN_MAIL = process.env.ADMINMAIL
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -14,59 +15,58 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// const sendOrderMailToAdmin = async (productos, user, fecha, estado, orderNumber) => {
-//   const listaPedido = productos.map((item) => `<li> ${item.title}   $${item.price}   x   ${item.quantity} u.</li>`).join(' ');
+const sendOrderMailToAdmin = async (productsCart, user, date, state, orderNumber) => {
+  const listOrder = productsCart.map((item) => `<li> ${item.title}   $${item.price}   x   ${item.quantity} u.</li>`).join(' ');
 
-//   const bodyPedido = `<div>
-//     <p>Nuevo pedido de ${user.nombre} ( ${user.username} )</p>
-//     <p>Productos:</p>
-//     <ul>
-//         ${listaPedido}
-//     </ul>
-//     <p> Nro. Orden:  ${orderNumber} </p>
-//     <p> Fecha: ${fecha} </p>
-//     <p> Estado: ${estado} </p>
-//     </div>`;
+  const bodyOrder = `<div>
+    <p>Nuevo pedido de ${user.name} ( ${user.username} )</p>
+    <p>Productos:</p>
+    <ul>
+        ${listOrder}
+    </ul>
+    <p> Nro. Orden:  ${orderNumber} </p>
+    <p> Fecha: ${date} </p>
+    <p> Estado: ${state} </p>
+    </div>`;
 
-//   const mailOptionsNuevoPedido = {
-//     from: 'App Tienda',
-//     to: config.ADMINMAIL,
-//     subject: `Nuevo pedido de ${user.nombre} ( ${user.username} )`,
-//     html: bodyPedido,
-//   };
+  const mailOptionsNewOrder = {
+    from: 'App Tienda',
+    to: ADMIN_MAIL,
+    subject: `Nuevo pedido de ${user.nombre} ( ${user.username} )`,
+    html: bodyOrder,
+  };
 
-//   try {
-//     const info = await transporter.sendMail(mailOptionsNuevoPedido);
-//     logger.log('info', info);
-//   } catch (err) {
-//     logger.log('error', err);
-//   }
-// };
+  try {
+    const info = await transporter.sendMail(mailOptionsNewOrder);
+    logger.log('info', info);
+  } catch (err) {
+    logger.log('error', err);
+  }
+};
 
-// const sendNewRegisterToAdmin = async (user) => {
-//   const mailOptionsNuevoUsuario = {
-//     from: 'App Tienda',
-//     to: config.ADMINMAIL,
-//     subject: 'Nuevo registro',
-//     html: `<div>
-//           <p>Nuevo usuario registrado:</p>
-//             <ul>
-//               <li>Nombre: ${user.nombre} </li>
-//               <li>Apellido: ${user.apellido} </li>
-//               <li>>Email: ${user.username}</li> 
-//               <li>Edad: ${user.edad}</li>  
-//               <li>Dirección: ${user.direccion}</li>  
-//               <li>Teléfono: ${user.telefono}</li> 
-//               <li> <img src=" ${user.avatar}" alt=" ${user.nombre}" /> </li> 
-//             </ul>
-//             </div>`,
-//   };
-//   try {
-//     const info = await transporter.sendMail(mailOptionsNuevoUsuario);
-//     logger.log('info', info);
-//   } catch (err) {
-//     logger.log('error', err);
-//   }
-// };
+const sendNewRegisterToAdmin = async (user) => {
+  const mailOptionsNewUser = {
+    from: 'App Tienda',
+    to: config.ADMIN_MAIL,
+    subject: 'Nuevo registro',
+    html: `<div>
+          <p>Nuevo usuario registrado:</p>
+            <ul>
+              <li>Nombre: ${user.name} </li>
+              <li>>Email: ${user.username}</li> 
+              <li>Edad: ${user.age}</li>  
+              <li>Dirección: ${user.address}</li>  
+              <li>Teléfono: ${user.phone}</li> 
+              <li> <img src=" ${user.url}" alt=" ${user.name}" /> </li> 
+            </ul>
+            </div>`,
+  };
+  try {
+    const info = await transporter.sendMail(mailOptionsNewUser);
+    logger.log('info', info);
+  } catch (err) {
+    logger.log('error', err);
+  }
+};
 
-// module.exports = { sendOrderMailToAdmin, sendNewRegisterToAdmin, transporter };
+module.exports = { sendOrderMailToAdmin, sendNewRegisterToAdmin, transporter };

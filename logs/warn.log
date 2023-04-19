@@ -71,3 +71,12 @@
 {"level":"error","message":"no se pudo agregar producto al carrito"}
 {"level":"error","message":"no se pudo agregar producto al carrito"}
 {"level":"error","message":"no se pudo agregar producto al carrito"}
+{"level":"error","message":"no se puedo acceder a lista de productos o no existe el carrito en el user"}
+{"level":"error","message":"no se puedo acceder a lista de productos o no existe el carrito en el user"}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"code":"EENVELOPE","command":"API","level":"error"}

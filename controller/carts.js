@@ -32,7 +32,7 @@ const getProducts = async (req, res) => {
       const productsMap = await service.getProducts(idCart);
       if (productsMap) {
         res.render("cart", { productsMap, idCart, username });
-        logger.log("info", "/api/cart/:id/productos - GET");
+        logger.log("info", "/api/cart/:id/products - GET");
       } else {
         logger.log("error", "no se puedo acceder a lista de productos");
       }
@@ -69,8 +69,11 @@ const deleteProdFromCart = async (req, res) => {
 
 const confirmOrder = async (req, res) => {
   const { username } = req.body;
-  const { id } = req.body; //es el id del carrito??? idCart?
-  const sendMsg = await service.confirmOrder(username, id);
+  const  idCart  = req.user.cartActual; 
+  console.log('username confirmOrder', username)
+  console.log('idCart confirmOrder',idCart )
+
+  const sendMsg = await service.confirmOrder(username, idCart);
   res.render("orderSuccessful");
   logger.log("info", "/api/cart/confirmOrder - POST");
 };

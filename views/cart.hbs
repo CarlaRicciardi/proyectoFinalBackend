@@ -8,13 +8,13 @@
                             style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.5rem;">Administración</a>
                     </li> --}}
                     <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
-                        <form method="get" action="/api/products/">
+                        <form method="GET" action="/api/products/">
                             <button type="submit" class="link-navbar btn btn-outline-success">
                                 Seguir comprando</button>
                         </form>
                     </li>
                     <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
-                        <form method="post" action="/api/cart/confirmOrder">
+                        <form method="POST" action="/api/cart/confirmOrder">
                             <input name="id" value="{{id}}" type="hidden">
                             <input name="username" value="{{username}}" type="hidden">
                             <button type="submit" class="link-navbar btn btn-outline-success">
@@ -35,7 +35,7 @@
     </header>
 
     <h1 class='text-secondary text-center text-success'>Mi Carrito</h1>
-    <form method="post" action="/api/cart/delcart?_method=delete">
+    <form method="POST" action="/api/cart/delcart?_method=delete">
         <input name="id" value="{{id}}" type="hidden">
         <button type="submit" class="link-navbar btn btn-outline-danger">
             Vaciar carrito</button>
