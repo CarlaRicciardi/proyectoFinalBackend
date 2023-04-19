@@ -38,7 +38,7 @@ class DaoUsersMongo {
   }
 
   async updateSetEmptyCart(username) {
-    const emptyCart = await this.model.findByIdAndUpdate({ username: username }, { $set: { cartActual: 'empty' } });
+    const emptyCart = await this.model.findOneAndUpdate({ username: username }, { $set: { cartActual: 'empty' } });
   }
 }
 

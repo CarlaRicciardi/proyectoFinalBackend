@@ -20,7 +20,7 @@ const CartsModel = mongoose.model('carts', CartSchema);
 
 class DaoMongoCart {
   constructor(modelCart) {
-    this.modelCart = modelCart
+    this.modelCart = modelCart;
   }
 
   async saveNew() {
@@ -46,7 +46,7 @@ class DaoMongoCart {
         title: item.title,
         price: item.price,
         thumbnail: item.thumbnail,
-        quantity: item.quantity
+        quantity: item.quantity,
       }));
       return productsMap;
     } else {
@@ -64,14 +64,13 @@ class DaoMongoCart {
     return cartUpdated;
   }
 
-  async deleteById(id) {
-    let cartDeleted = await this.modelCart.deleteOne({ _id: id });
+  async deleteById(idCart) {
+    let cartDeleted = await this.modelCart.deleteOne({ _id: idCart });
   }
 
   async getProdInCart(idCart, idProd) {
     const cart = await this.modelCart.findOne({ _id: idCart });
     const arrayProds = cart.productsCart;
-    console.log('arrayProds:', arrayProds)
     const findProd = arrayProds.find((el) => el._id == idProd);
     return findProd;
   }
@@ -84,12 +83,17 @@ class DaoMongoCart {
     const cantUpdated = await this.modelCart.findOneAndUpdate({ _id: idCart }, { $set: { productsCart: arrayProds } }, { new: true });
   }
 
-  async deleteProd(idCart, idProd) {
+  async deleteProd(idCart, idProduct) {
     const cart = await this.modelCart.findOne({ _id: idCart });
+    console.log('cart:', cart);
     const arrayProds = cart.productsCart;
+    console.log('arrayprods:', arrayProds);
     try {
-      const newArray = arrayProds.filter((el) => el._id != idProd);
-      const cartUpdated = await this.modelCart.findOneAndUpdate({ _id: id }, { $set: { productsCart: newArray } }, { new: true });
+      const newArray = arrayProds.filter((el) => el._id != idProduct);
+      console.log('newArray:', newArray);
+      const cartUpdated = await this.modelCart.findOneAndUpdate({ _id: idCart },
+        { $set: { productsCart: newArray } }, { new: true });
+      console.log('cartUpdated', cartUpdated);
     } catch (err) {
       logger.log('error', 'no se pudo eliminar producto del carrito ');
     }

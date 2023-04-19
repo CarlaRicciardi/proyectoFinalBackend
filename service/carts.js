@@ -5,7 +5,7 @@ const FactoryDaoCarts = require('../persistence/daos/carts/factoryDaoCarts.js');
 const DaoCarts = new FactoryDaoCarts(PERSISTENCE);
 
 const { saveCartIdInUser, updateEmptyCartInUser, getUser } = require('./users.js');
-const saveShopOrderAndSend = require("../service/shopOrders");
+const saveShopOrderAndSend = require('../service/shopOrders');
 
 const createCart = async (username) => {
   try {
@@ -47,18 +47,15 @@ const deleteCart = async (idCart, username) => {
   const cartEmpty = await updateEmptyCartInUser(username);
 };
 
-const deleteProdFromCart = async (idCart, idProd) => {
-  const delProd = await DaoCarts.deleteProd(idCart, idProd);
+const deleteProdFromCart = async (idCart, idProduct) => {
+  const deleteProduct = await DaoCarts.deleteProd(idCart, idProduct);
   return 'prod eliminado';
 };
 
 const confirmOrder = async (username, idCart) => {
   const user = await getUser(username);
   const products = await DaoCarts.getProductList(idCart);
-const saveOrderAndSend = await saveShopOrderAndSend(
-  products,
-  user
-);
+  const saveOrderAndSend = await saveShopOrderAndSend(products, user);
 };
 
 module.exports = {

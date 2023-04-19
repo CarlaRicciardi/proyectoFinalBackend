@@ -45,21 +45,18 @@ const getProducts = async (req, res) => {
 };
 
 const deleteCart = async (req, res) => {
-  console.log('holassssss');
-  const idCart = req.user;
-  console.log('idCart>>>', idCart);
-  const username = req.user;
-  console.log('username>>>', username);
+  const idCart = req.user.cartActual;
+  const { username } = req.user;
   const cartDeleted = await service.deleteCart(idCart, username);
   logger.log('info', '/api/cart/delcart - DELETE  eliminar carrito');
   res.redirect('/api/login');
 };
 
 const deleteProdFromCart = async (req, res) => {
-  const { prod } = req.body;
+  const idProduct = req.body;
   const user = req.user;
-  const idCart = user.cartActual;
-  const eliminarProd = await service.deleteProdFromCart(idCart, prod);
+  const idCart = req.user.cartActual;
+  const eliminarProd = await service.deleteProdFromCart(idCart, idProduct);
   res.redirect(`/api/cart/${idCart}/products`);
   logger.log('info', '/api/cart/products - DELETE');
 };

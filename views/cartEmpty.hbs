@@ -1,39 +1,38 @@
-    <header class="container-fluid" id="header">
-        <nav id="navbar">
-            <div class="container-fluid">
+<header class='container-fluid' id='header'>
+  <nav id='navbar'>
+    <div class='container-fluid'>
 
-                <ul style="display:flex; flex-direction:row; justify-content:space-around;">
-                    {{!-- <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
+      <ul style='display:flex; flex-direction:row; justify-content:space-around;'>
+        {{! <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
                         <a class="link-navbar" href="/api/admin"
                             style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.5rem;">Administración</a>
-                    </li> --}}
-                    <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
-                        <a class="link-navbar" href="/api/usuarios/login"
+                    </li> }}
+        {{! <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
+                        <a class="link-navbar" href="/api/login"
                             style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.5rem;">Mi
                             Perfil</a>
-                    </li>
-                    {{!-- <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
+                    </li> }}
+        {{! <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
                         <button
                             style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.2rem; background-color:white; border-width:0;">
                             <a class="link-navbar"
                                 style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140);"
                                 href="/chat">Chat</a></button>
-                    </li> --}}
+                    </li> }}
 
-          <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
-            <button id='' class='link-navbar btn btn-outline-danger'>
-              <a href='/api/logout' class='text-decoration-none text-reset'>Cerrar Sesion</a>
-            </button>
-          </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+        <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
+          <button id='' class='link-navbar btn btn-outline-danger'>
+            <a href='/api/logout' class='text-decoration-none text-reset'>Cerrar Sesion</a>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
 
-
-    <h1 class='text-secondary text-center text-success'>Aún no ha agregado productos al carrito</h1>
-    <form method="POST" action="/api/cart">
-                            <button type="submit" id="" class="link-navbar btn btn-success d-block mx-auto">
-                                Comenzar a comprar
-                            </button>
-                        </form>
+<h1 class='text-secondary text-center text-success'>Aún no ha agregado productos al carrito</h1>
+<form method='POST' action='/api/cart'>
+  <button type='submit' id='' class='link-navbar btn btn-success d-block mx-auto'>
+    Comenzar a comprar
+  </button>
+</form>

@@ -3,6 +3,8 @@ const passport = require('passport');
 const { startPassport } = require('./middlewares/passport.js');
 const { configMongoSession } = require('./middlewares/mongoSession.js');
 const connectMongoDB = require('./persistence/mongoDB.js');
+const methodOverride = require("method-override");
+
 
 const router = require('./routes/index.js');
 const rootRouter = require('./routes/root.js');
@@ -14,6 +16,7 @@ const httpServer = require('http').createServer(app);
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 app.use(configMongoSession);
 const connectToDB = new connectMongoDB();
