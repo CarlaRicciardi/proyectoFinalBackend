@@ -85,18 +85,10 @@ class DaoMongoCart {
 
   async deleteProd(idCart, idProduct) {
     const cart = await this.modelCart.findOne({ _id: idCart });
-    console.log('cart:', cart);
     const arrayProds = cart.productsCart;
-    console.log('arrayprods:', arrayProds);
     try {
-      arrayProds.forEach((ob) => {
-        console.log('ob._id', ob._id)
-        console.log('idProduct:', idProduct)
-      });        
       const newArray = arrayProds.filter((el) => el._id != idProduct.product);
-      console.log('newArray:', newArray);
       const cartUpdated = await this.modelCart.findOneAndUpdate({ _id: idCart }, { $set: { productsCart: newArray } }, { new: true });
-      console.log('cartUpdated', cartUpdated);
     } catch (err) {
       logger.log('error', 'no se pudo eliminar producto del carrito ');
     }

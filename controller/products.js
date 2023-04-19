@@ -4,8 +4,6 @@ const logger = require('../config/logger.js');
 async function getAll(req, res) {
   const user = {idCart: req.user.cartActual}
   const idCart = req.user.cartActual
-  // console.log('user:', user)
-  // console.log('idCart', idCart)
   let allProducts = await service.getAll();
   const productsFixed = allProducts.map((item) => {
     return {
@@ -57,8 +55,6 @@ async function deleteProductById(req, res) {
 const keepShopping = async (req, res) => {
   const user = req.user;
   const cart = user.cartActual;
-  console.log('user en keep shopping', user)
-  console.log('cart keep shopping', cart)
   if (cart != "empty") {
     res.redirect("/api/products");
     logger.log(
