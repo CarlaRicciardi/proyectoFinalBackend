@@ -45,13 +45,14 @@ const getProducts = async (req, res) => {
 };
 
 const deleteCart = async (req, res) => {
-  const idCart = user.cartActual;
+  console.log('holassssss');
+  const idCart = req.user;
   console.log('idCart>>>', idCart);
-  const username = user.username;
+  const username = req.user;
   console.log('username>>>', username);
   const cartDeleted = await service.deleteCart(idCart, username);
   logger.log('info', '/api/cart/delcart - DELETE  eliminar carrito');
-  res.redirect('/api//login');
+  res.redirect('/api/login');
 };
 
 const deleteProdFromCart = async (req, res) => {
@@ -64,10 +65,8 @@ const deleteProdFromCart = async (req, res) => {
 };
 
 const confirmOrder = async (req, res) => {
-  const { username } = req.body;
+  const { username } = req.user;
   const idCart = req.user.cartActual;
-  console.log('username confirmOrder', username);
-  console.log('idCart confirmOrder', idCart);
 
   const sendMsg = await service.confirmOrder(username, idCart);
   res.render('orderSuccessful');
