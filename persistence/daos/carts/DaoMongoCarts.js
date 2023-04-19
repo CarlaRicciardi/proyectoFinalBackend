@@ -48,7 +48,6 @@ class DaoMongoCart {
         thumbnail: item.thumbnail,
         quantity: item.quantity
       }));
-      console.log('productsMap en getprodlist', productsMap) //llega perfecto productsMap
       return productsMap;
     } else {
       return false;

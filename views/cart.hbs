@@ -1,90 +1,92 @@
-    <header class="container-fluid" id="header">
-        <nav id="navbar">
-            <div class="container-fluid">
+<header class='container-fluid' id='header'>
+  <nav id='navbar'>
+    <div class='container-fluid'>
 
-                <ul style="display:flex; flex-direction:row; justify-content:space-around;">
-                    {{!-- <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
+      <ul style='display:flex; flex-direction:row; justify-content:space-around;'>
+        {{! <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
                         <a class="link-navbar" href="/api/admin"
                             style="text-decoration:none; list-style-type:none; color:rgb(61, 12, 140); font-size:1.5rem;">Administración</a>
-                    </li> --}}
-                    <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
-                        <form method="GET" action="/api/products/">
-                            <button type="submit" class="link-navbar btn btn-outline-success">
-                                Seguir comprando</button>
-                        </form>
-                    </li>
-                    <li class="btn-navbar" style="text-decoration:none; list-style-type:none;">
-                        <form method="POST" action="/api/cart/confirmOrder">
-                            <input name="id" value="{{id}}" type="hidden">
-                            <input name="username" value="{{username}}" type="hidden">
-                            <button type="submit" class="link-navbar btn btn-outline-success">
-                                Confirmar pedido</button>
-                        </form>
-                    </li>
+                    </li> }}
+        <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
+          <form method='GET' action='/api/products/'>
+            <button type='submit' class='link-navbar btn btn-outline-success'>
+              Seguir comprando</button>
+          </form>
+        </li>
+        <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
+          <form method='POST' action='/api/cart/confirmOrder'>
+            <input name='id' value='{{id}}' type='hidden' />
+            <input name='username' value='{{username}}' type='hidden' />
+            <button type='submit' class='link-navbar btn btn-outline-success'>
+              Confirmar pedido</button>
+          </form>
+        </li>
 
+        <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
+          <button id='' class='link-navbar btn btn-outline-danger'>
+            <a href='/api/logout' class='text-decoration-none text-reset'>Cerrar Sesion</a>
+          </button>
+        </li>
+      </ul>
 
-          <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
-            <button id='' class='link-navbar btn btn-outline-danger'>
-              <a href='/api/logout' class='text-decoration-none text-reset'>Cerrar Sesion</a>
-            </button>
-          </li>
-                </ul>
+    </div>
+  </nav>
+</header>
 
-            </div>
-        </nav>
-    </header>
+<h1 class='text-secondary text-center text-success'>Mi Carrito</h1>
+<form method='POST' action='/api/cart/delcart?_method=delete'>
+  <input name='id' value='{{id}}' type='hidden' />
+  <button type='submit' class='link-navbar btn btn-outline-danger'>
+    Vaciar carrito</button>
+</form>
+<table style='margin:20px; color: #198754;' height='400px'>
+  <tr>
+    <th rowspan='3' colspan='15'>Imagen</th>
+    <th rowspan='3' colspan='15'>Producto</th>
+    <th rowspan='3' colspan='15'>Precio</th>
+    <th rowspan='3' colspan='15'>Cantidad(en Kg)</th>
+    <th rowspan='3' colspan='15'></th>
+  </tr>
+  <tbody id='cart'>
 
-    <h1 class='text-secondary text-center text-success'>Mi Carrito</h1>
-    <form method="POST" action="/api/cart/delcart?_method=delete">
-        <input name="id" value="{{id}}" type="hidden">
-        <button type="submit" class="link-navbar btn btn-outline-danger">
-            Vaciar carrito</button>
-    </form>
-    <table style="margin:20px; background-color:#caddd4; color: #198754;" height="400px">
-        <tr>
-            <th rowspan="3" colspan="15">Imagen</th>
-            <th rowspan="3" colspan="15">Producto</th>
-            <th rowspan="3" colspan="15">Precio</th>
-            <th rowspan="3" colspan="15">Cantidad(en Kg)</th>
-            <th rowspan="3" colspan="15"></th>
-        </tr>
-        <tbody id="cart">
-            
-            {{#each productsMap}}
-            <tr>
-                <td rowspan="1" colspan="10" style="color:#198754; text-align:center; padding:5px;">
-                    <div style="width: 120px;
+    {{#each productsMap}}
+      <tr>
+        <td rowspan='1' colspan='10' style='color:#198754; text-align:center; padding:5px;'>
+          <div
+            style='width: 120px;
                         display:flex;
                         justify-content: center;
-                        align-items:center;">
-                        <img src="{{this.thumbnail}}" style="max-height: 100%;
+                        align-items:center;'
+          >
+            <img
+              src='{{this.thumbnail}}'
+              style='max-height: 100%;
                         max-width: 100%;
-                        border-radius: 5px 5px 0 0;" />
-                    </div>
-                </td>
-                <td rowspan="1" colspan="10"
-                    style="color:#198754; font-weight:bold; text-align:left; padding:5px; ">
-                    {{this.title}}
-                </td>
-                <td rowspan="1" colspan="20"
-                    style="color:#198754; font-weight:bold; text-align:center; padding:5px;">
-                    $ {{this.price}}
-                </td>
-                <td rowspan="1" colspan="20"
-                    style="color:#198754; font-weight:bold; text-align:center; padding:5px;">
-                    {{this.quantity}}
-                </td>
-                <td rowspan="1" colspan="20" style="font-weight:bold; text-align:center; padding:5px;">
+                        border-radius: 5px 5px 0 0;'
+            />
+          </div>
+        </td>
+        <td rowspan='1' colspan='10' style='color:#198754; font-weight:bold; text-align:left; padding:5px; '>
+          {{this.title}}
+        </td>
+        <td rowspan='1' colspan='20' style='color:#198754; font-weight:bold; text-align:center; padding:5px;'>
+          $
+          {{this.price}}
+        </td>
+        <td rowspan='1' colspan='20' style='color:#198754; font-weight:bold; text-align:center; padding:5px;'>
+          {{this.quantity}}
+        </td>
+        <td rowspan='1' colspan='20' style='font-weight:bold; text-align:center; padding:5px;'>
 
-                    <form method="post" action="/api/cart/products?_method=delete">
-                        <input name="prod" id="prod" value="{{this.id}}" type="hidden">
-                        <button type="submit" id="" class='link-navbar btn btn-outline-danger'>
-                            x
-                        </button>
-                        </form>
-                </td>
-            </tr>
-            {{/each}}
-            
-        </tbody>
-    </table>
+          <form method='post' action='/api/cart/products?_method=delete'>
+            <input name='prod' id='prod' value='{{this.id}}' type='hidden' />
+            <button type='submit' id='' class='link-navbar btn btn-outline-danger'>
+              x
+            </button>
+          </form>
+        </td>
+      </tr>
+    {{/each}}
+
+  </tbody>
+</table>
