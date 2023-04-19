@@ -71,7 +71,7 @@ class DaoMongoCart {
   async getProdInCart(idCart, idProd) {
     const cart = await this.modelCart.findOne({ _id: idCart });
     const arrayProds = cart.productsCart;
-    console.log('arrayprodssss', arrayProds)
+    console.log('arrayProds:', arrayProds)
     const findProd = arrayProds.find((el) => el._id == idProd);
     return findProd;
   }

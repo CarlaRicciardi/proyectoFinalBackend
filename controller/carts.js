@@ -61,7 +61,7 @@ const deleteCart = async (req, res) => {
 const deleteProdFromCart = async (req, res) => {
   const { prod } = req.body;
   const user = req.user;
-  const idCart = user.carritoactual;
+  const idCart = user.cartActual;
   const eliminarProd = await service.deleteProdFromCart(idCart, prod);
   res.redirect(`/api/cart/${idCart}/products`);
   logger.log("info", "/api/cart/products - DELETE");
