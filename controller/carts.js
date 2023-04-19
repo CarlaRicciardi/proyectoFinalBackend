@@ -48,9 +48,9 @@ const getProducts = async (req, res) => {
 };
 
 const deleteCart = async (req, res) => {
-  const { idCart } = req.body;
+  const idCart = user.cartActual;
   console.log('idCart>>>', idCart)
-  const { username } = req.user;
+  const username  = user.username;
   console.log('username>>>', username)
 
   const carritoEliminado = await service.deleteCart(idCart, username);
