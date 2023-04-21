@@ -3,11 +3,7 @@
     <nav id='navbar'>
       <div class='container-fluid' style='margin-top:20px;'>
         <ul style='display:flex; flex-direction:row; justify-content:space-around;'>
-          {{! <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
-            <button id='' class='link-navbar btn btn-outline-success'>
-              <a href='/api/admin' class='text-decoration-none text-reset'>Administración</a>
-            </button>
-          </li> }}
+
           <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
             <form method='POST' action='/api/cart'>
               <button type='submit' id='' class='link-navbar btn btn-outline-success'>
@@ -20,10 +16,6 @@
               <a href='/api/cart/{{user.cartActual}}/products' class='text-decoration-none text-reset'>Ver Carrito</a>
             </button>
           </li>
-          {{! <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
-            <button class='link-navbar btn btn-outline-success'>
-              <a href='/chat' class='text-decoration-none text-reset'>Chat de Soporte</a></button>
-          </li> }}
           <li class='btn-navbar' style='text-decoration:none; list-style-type:none;'>
             <button id='' class='link-navbar btn btn-outline-danger'>
               <a href='/api/logout' class='text-decoration-none text-reset'>Cerrar Sesion</a>

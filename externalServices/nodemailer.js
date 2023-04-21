@@ -3,8 +3,8 @@ const config = require('../config/config.js');
 const nodemailer = require('nodemailer');
 
 const NODEMAILER_MAIL = process.env.NODEMAILER_MAIL;
-const NODEMAILER_PASS = process.env.NODEMAILER_PASS
-const ADMIN_MAIL = process.env.ADMINMAIL
+const NODEMAILER_PASS = process.env.NODEMAILER_PASS;
+const ADMIN_MAIL = process.env.ADMINMAIL;
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -44,29 +44,4 @@ const sendOrderMailToAdmin = async (productsCart, user, date, state, orderNumber
   }
 };
 
-const sendNewRegisterToAdmin = async (user) => {
-  const mailOptionsNewUser = {
-    from: 'App Tienda',
-    to: config.ADMIN_MAIL,
-    subject: 'Nuevo registro',
-    html: `<div>
-          <p>Nuevo usuario registrado:</p>
-            <ul>
-              <li>Nombre: ${user.name} </li>
-              <li>>Email: ${user.username}</li> 
-              <li>Edad: ${user.age}</li>  
-              <li>Dirección: ${user.address}</li>  
-              <li>Teléfono: ${user.phone}</li> 
-              <li> <img src=" ${user.url}" alt=" ${user.name}" /> </li> 
-            </ul>
-            </div>`,
-  };
-  try {
-    const info = await transporter.sendMail(mailOptionsNewUser);
-    logger.log('info', info);
-  } catch (err) {
-    logger.log('error', err);
-  }
-};
-
-module.exports = { sendOrderMailToAdmin, sendNewRegisterToAdmin, transporter };
+module.exports = { sendOrderMailToAdmin, transporter };

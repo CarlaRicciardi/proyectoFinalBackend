@@ -11,7 +11,6 @@ const getLogin = async (req, res) => {
     const { username, password } = req.user;
     // const user = { username, password };
     const user = await service.getUser(username);
-    console.log('user:', user);
     res.render('profileUser', { user });
   } else {
     res.render('login');
