@@ -4,7 +4,6 @@ const PERSISTENCEUSERS = config.PERSISTENCEUSERS;
 const factoryDaoUsers = require('../persistence/daos/users/factoryDaoUsers.js');
 const DaoUsers = new factoryDaoUsers(PERSISTENCEUSERS);
 
-const { sendNewRegisterToAdmin } = require('../externalServices/nodemailer.js');
 
 const createUser = async (obj) => {
   const newUser = await DaoUsers.saveNew(obj);

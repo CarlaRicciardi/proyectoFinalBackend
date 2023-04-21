@@ -51,8 +51,7 @@ const postSignup = async (req, res) => {
   logger.log('info', '/signup - POST');
   const { username, password, name, address, age, phone, url } = req.user;
   const user = { username, password, name, address, age, phone, url };
-  await service.postSignup(user);
-  res.render('profileUser', { user });
+  res.render('successSignup', { user });
 };
 
 const getLogout = (req, res) => {
