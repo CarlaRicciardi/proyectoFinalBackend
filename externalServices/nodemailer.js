@@ -30,7 +30,7 @@ const sendOrderMailToAdmin = async (productsCart, user, date, state, orderNumber
     </div>`;
 
   const mailOptionsNewOrder = {
-    from: 'App Tienda',
+    from: 'App Frutas y verduras',
     to: ADMIN_MAIL,
     subject: `Nuevo pedido de ${user.name} ( ${user.username} )`,
     html: bodyOrder,
