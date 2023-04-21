@@ -4,7 +4,7 @@ const PERSISTENCEUSERS = config.PERSISTENCEUSERS;
 const factoryDaoUsers = require('../persistence/daos/users/factoryDaoUsers.js');
 const DaoUsers = new factoryDaoUsers(PERSISTENCEUSERS);
 
-// const { sendNewRegisterToAdmin } = require('../external-services/nodemailer');
+const { sendNewRegisterToAdmin } = require('../externalServices/nodemailer.js');
 
 const createUser = async (obj) => {
   const newUser = await DaoUsers.saveNew(obj);
@@ -17,7 +17,7 @@ const getUser = async (username) => {
     username: user.username,
     password: user.password,
     name: user.name,
-    adress: user.adress,
+    address: user.address,
     age: user.age,
     phone: user.phone,
     url: user.url,
@@ -40,9 +40,9 @@ const postLogin = async (username, password) => {
   }
 };
 
-// const postSignup = async (user) => {
-//   const emailRegister = await sendNewRegisterToAdmin(user);
-// };
+const postSignup = async (user) => {
+  const emailRegister = await sendNewRegisterToAdmin(user);
+};
 
 const saveCartIdInUser = async (username, idCart) => {
   const user = await DaoUsers.addCartIdToUser(username, idCart);
@@ -59,4 +59,5 @@ module.exports = {
   getUser,
   getUserById,
   postLogin,
+  postSignup,
 };

@@ -6,10 +6,12 @@ const getIndex = (req, res) => {
   res.redirect('/api/login');
 };
 
-const getLogin = (req, res) => {
+const getLogin = async (req, res) => {
   if (req.isAuthenticated()) {
     const { username, password } = req.user;
-    const user = { username, password };
+    // const user = { username, password };
+    const user = await service.getUser(username);
+    console.log('user:', user);
     res.render('profileUser', { user });
   } else {
     res.render('login');
@@ -50,7 +52,7 @@ const postSignup = async (req, res) => {
   logger.log('info', '/signup - POST');
   const { username, password, name, address, age, phone, url } = req.user;
   const user = { username, password, name, address, age, phone, url };
-  // await service.postSignup(user) //envio mail nodemailer
+  await service.postSignup(user);
   res.render('profileUser', { user });
 };
 

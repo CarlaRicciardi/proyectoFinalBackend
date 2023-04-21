@@ -18,7 +18,6 @@ async function getAll(req, res) {
     res.render('allProducts', {
       products: productsFixed,
       user: user,
-      // idCart: idCart
     });
   }
 }

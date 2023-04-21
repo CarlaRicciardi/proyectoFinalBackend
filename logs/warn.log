@@ -103,3 +103,14 @@
 {"level":"error","message":"no se pudo eliminar producto del carrito "}
 {"level":"error","message":"no se pudo eliminar producto del carrito "}
 {"level":"error","message":"no se pudo eliminar producto del carrito "}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"level":"warn","message":"failRoute"}
+{"level":"warn","message":"failRoute"}
+{"level":"warn","message":"failRoute"}
+{"level":"error","message":"User already exists"}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"level":"error","message":"no se puedo acceder a lista de productos"}
+{"level":"error","message":"no se puedo acceder a lista de productos"}
+{"level":"error","message":"no se puedo acceder a lista de productos"}

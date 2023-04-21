@@ -12,7 +12,4 @@ routerUsers.get('/signup', controller.getSignup);
 routerUsers.post('/signup', passport.authenticate('signup', { failureRedirect: '/api/failSignup' }), controller.postSignup);
 routerUsers.get('/failSignup', controller.getFailSignup);
 
-
-// routerUsers.get('*', controller.failRoute);
-
 module.exports = routerUsers;
