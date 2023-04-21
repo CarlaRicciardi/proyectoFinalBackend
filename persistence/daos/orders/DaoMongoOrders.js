@@ -21,7 +21,9 @@ class DaoOrdersMongo {
   }
 
   async saveNew(obj) {
+    console.log('obj en daomongo orders', obj)
     const newOrder = await this.model.create(obj);
+console.log('new order en daomongoorders', newOrder)
     return newOrder;
   }
 

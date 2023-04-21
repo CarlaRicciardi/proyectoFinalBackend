@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 
 const NODEMAILER_MAIL = process.env.NODEMAILER_MAIL;
 const NODEMAILER_PASS = process.env.NODEMAILER_PASS;
-const ADMIN_MAIL = process.env.ADMINMAIL;
+const ADMIN_MAIL = 'carla.ricciardi95@gmail.com';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -17,7 +17,6 @@ const transporter = nodemailer.createTransport({
 
 const sendOrderMailToAdmin = async (productsCart, user, date, state, orderNumber) => {
   const listOrder = productsCart.map((item) => `<li> ${item.title}   $${item.price}   x   ${item.quantity} u.</li>`).join(' ');
-
   const bodyOrder = `<div>
     <p>Nuevo pedido de ${user.name} ( ${user.username} )</p>
     <p>Productos:</p>
@@ -28,6 +27,7 @@ const sendOrderMailToAdmin = async (productsCart, user, date, state, orderNumber
     <p> Fecha: ${date} </p>
     <p> Estado: ${state} </p>
     </div>`;
+
 
   const mailOptionsNewOrder = {
     from: 'App Frutas y verduras',

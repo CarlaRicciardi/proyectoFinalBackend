@@ -64,7 +64,8 @@ const deleteProdFromCart = async (req, res) => {
 const confirmOrder = async (req, res) => {
   const { username } = req.user;
   const idCart = req.user.cartActual;
-
+  console.log('username en confirm order:', username);
+  console.log('idcart en confirm order:', idCart);
   const sendMsg = await service.confirmOrder(username, idCart);
   res.render('orderSuccessful');
   logger.log('info', '/api/cart/confirmOrder - POST');

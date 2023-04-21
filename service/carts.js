@@ -54,7 +54,9 @@ const deleteProdFromCart = async (idCart, idProduct) => {
 
 const confirmOrder = async (username, idCart) => {
   const user = await getUser(username);
+  console.log('user en service confirmorder:', user)
   const products = await DaoCarts.getProductList(idCart);
+  console.log('products en service confirmorder:', products)
   const saveOrderAndSend = await saveShopOrderAndSend(products, user);
 };
 
