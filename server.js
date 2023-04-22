@@ -13,7 +13,6 @@ const app = express();
 const httpServer = require('http').createServer(app);
 
 app.use(express.json());
-app.use(express.static(__dirname + '/views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
