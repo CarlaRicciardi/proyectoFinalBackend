@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js dev",
-    "prod": "node server.js prod"
+    "start": "node server.js prod",
+    "dev": "node server.js dev"
   },
   "keywords": [],
   "author": "",
