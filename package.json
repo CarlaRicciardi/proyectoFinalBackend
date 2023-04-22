@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "14x"
+  },
   "scripts": {
-    "dev": "nodemon server.js dev",
-    "prod": "nodemon server.js prod",
-    "test": "mocha  ./test/testingApp.js"
+    "dev": "node server.js dev",
+    "prod": "node server.js prod"
   },
   "keywords": [],
   "author": "",
